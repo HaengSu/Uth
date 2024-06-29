@@ -16,18 +16,24 @@ class _SignInPage extends State<SignInPage> {
         body: Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: <Widget>[
-        const Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0),
-          child: TextField(
+        Container(
+          margin: const EdgeInsets.only(left: 20,right: 20),
+          width: double.infinity,
+          height: 50,
+          child: const TextField(
+            style: TextStyle(fontSize: 16),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: '이메일',
             ),
           ),
         ),
-        const Padding(
-          padding: EdgeInsets.only(left: 20.0, right: 20.0, top: 10.0),
-          child: TextField(
+        Container(
+          margin: const EdgeInsets.only(left: 20,top: 10,right: 20),
+          width: double.infinity,
+          height: 50,
+          child: const TextField(
+            style: TextStyle(fontSize: 16),
             decoration: InputDecoration(
               border: OutlineInputBorder(),
               hintText: '비밀번호',
