@@ -18,7 +18,11 @@ class MyApp extends StatelessWidget {
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: '/main',
+
+    // initialLocation: '/main',
+    // TODO: 추후 삭제하고 위 주석 코드 사용할 것
+    initialLocation: '/signin',
+
     routes: [
       GoRoute(
         path: '/main',
