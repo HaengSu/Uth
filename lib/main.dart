@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uth/screens/sign/SignIn.dart';
 import 'package:uth/screens/sign/SignUp.dart';
+import 'package:uth/screens/start/Onboard.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,11 +20,13 @@ class MyApp extends StatelessWidget {
 GoRouter router() {
   return GoRouter(
 
-    // initialLocation: '/main',
-    // TODO: 추후 삭제하고 위 주석 코드 사용할 것
-    initialLocation: '/signin',
+    initialLocation: '/onboard',
 
     routes: [
+      GoRoute(
+      path: '/onboard',
+      builder: (context, state) => const OnboardingPage(),
+    ),
       GoRoute(
         path: '/main',
         builder: (context, state) => const MainPage(),
