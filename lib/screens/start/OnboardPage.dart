@@ -11,23 +11,21 @@ class OnboardingPage extends StatefulWidget {
 class _Onboarding extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: <Widget>[
+    return PageView(
+      children: [
         Container(
           color: Colors.red,
-          child: Center(child: Text('Page 1')),
+          child: Text("어떤 점이 어려운가요?"),
         ),
         Container(
           color: Colors.blue,
-          child: Center(child: Text('Page 2')),
+          child: Text("우따에서는 가능해요"),
         ),
         Container(
           color: Colors.green,
-          child: Center(child: Text('Page 3')),
+          child: Text("어서오세요 :)"),
         ),
       ],
     );
   }
-
 }
