@@ -16,13 +16,16 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(routerConfig: router());
+    return MaterialApp.router(routerConfig: router(), theme: ThemeData(scaffoldBackgroundColor: Colors.white),);
   }
 }
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: '/start',
+    // initialLocation: '/start',
+
+    // fixme : ui제작을 위해서 사용 추후삭제할 것
+    initialLocation: '/main',
 
     routes: [
       GoRoute(

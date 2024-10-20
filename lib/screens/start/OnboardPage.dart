@@ -11,21 +11,20 @@ class OnboardingPage extends StatefulWidget {
 class _Onboarding extends State<OnboardingPage> {
   @override
   Widget build(BuildContext context) {
-    return PageView(
-      children: [
-        Container(
-          color: Colors.red,
-          child: Text("어떤 점이 어려운가요?"),
-        ),
-        Container(
-          color: Colors.blue,
-          child: Text("우따에서는 가능해요"),
-        ),
-        Container(
-          color: Colors.green,
-          child: Text("어서오세요 :)"),
-        ),
-      ],
-    );
+    return Container(
+        color: Colors.white,
+        child: PageView(
+          children: [
+            Container(
+              child: Text("어떤 점이 어려운가요?"),
+            ),
+            Container(
+              child: Text("우따에서는 가능해요"),
+            ),
+            Container(
+              child: Text("어서오세요 :)"),
+            ),
+          ],
+        ));
   }
 }

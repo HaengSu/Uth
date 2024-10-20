@@ -11,21 +11,22 @@ class FindPwPage extends StatefulWidget {
 }
 
 class _FindPwPage extends State<FindPwPage> {
-
   @override
   Widget build(BuildContext context) {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.start,
+    return Scaffold(
+        body: Center(
+            child: PageView(
       children: [
-        IconButton(
-            onPressed: () {},
-            icon: Image.asset(
-              'image/img_arrow_back.png',
-              width: 20,
-              height: 20,
-            )),
-        Text('비밀번호 찾기에 사용할\n이메일을 입력해주세요.')
+        Container(
+          child: Text('비밀번호 찾기에 사용할\n이메일을 입력해주세요.'),
+        ),
+        Container(
+          child: Text('이메일로 인증코드를 보냈습니다\n확인하여 인증해주세요.'),
+        ),
+        Container(
+          child: Text('로그인에 사용할\n비밀번호를 입력해주세요.'),
+        )
       ],
-    );
+    )));
   }
 }
