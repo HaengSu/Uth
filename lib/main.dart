@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:uth/screens/container/BottomNav.dart';
 import 'package:uth/screens/main/MainPage.dart';
 import 'package:uth/screens/sign/FindPwPage.dart';
 import 'package:uth/screens/sign/LoginPage.dart';
@@ -25,7 +26,7 @@ GoRouter router() {
     // initialLocation: '/start',
 
     // fixme : ui제작을 위해서 사용 추후삭제할 것
-    initialLocation: '/main',
+    initialLocation: '/container',
 
     routes: [
       GoRoute(
@@ -37,8 +38,8 @@ GoRouter router() {
         builder: (context, state) => const OnboardingPage(),
       ),
       GoRoute(
-        path: '/main',
-        builder: (context, state) => const MainPage(),
+        path: '/container',
+        builder: (context, state) => const BottomNavPage(),
       ),
       GoRoute(
         path: '/signin',
