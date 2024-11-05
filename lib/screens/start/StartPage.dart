@@ -95,7 +95,7 @@ class _StartPage extends State<StartPage> {
                       children: [
                     TextSpan(text: '이미 가입하였나요?'),
                     TextSpan(
-                        text: ' 로그인하기',
+                        text: ' 로그인',
                         style: TextStyle(
                             color: mainColor, fontWeight: FontWeight.bold)),
                   ])),

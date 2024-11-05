@@ -33,6 +33,7 @@ dependencies:
 
   go_router: ^12.1.1
   flutter_native_splash: ^2.4.2
+  smooth_page_indicator: ^1.2.0+3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -64,6 +65,7 @@ flutter:
   assets:
     - assets/
     - assets/images/2.0x/img_frame.png
+    - assets/images/2.0x/img_chatting.png
     - image/img_arrow_back.png
 
 
