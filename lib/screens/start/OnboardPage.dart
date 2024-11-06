@@ -25,7 +25,7 @@ class _Onboarding extends State<OnboardingPage> {
     return Scaffold(
       body: Container(
         color: Colors.white,
-        child: Column(
+        child: Stack(
           children: [
             Expanded(
                 child: PageView(
@@ -41,16 +41,39 @@ class _Onboarding extends State<OnboardingPage> {
                 _ThirdOnboardPage(),
               ],
             )),
-            Container(
-                margin: EdgeInsets.only(top: 107),
-                child: SmoothPageIndicator(
-                    controller: _pageController,
-                    count: 3,
-                    effect: const WormEffect(
-                        dotColor: Colors.grey, // 비활성화된 페이지 점 색상
-                        activeDotColor: mainColor, // 활성화된 페이지 점 색상
-                        dotHeight: 8,
-                        dotWidth: 8)))
+            Positioned(
+                bottom: 136,
+                left: 0,
+                right: 0,
+                child: Align(
+                  alignment: Alignment.center,
+                  child: SmoothPageIndicator(
+                      controller: _pageController,
+                      count: 3,
+                      effect: const WormEffect(
+                          dotColor: Colors.grey, // 비활성화된 페이지 점 색상
+                          activeDotColor: mainColor, // 활성화된 페이지 점 색상
+                          dotHeight: 8,
+                          dotWidth: 8)),
+                )),
+            Positioned(
+              bottom: 56,
+              left: 20,
+              right: 20,
+              child: Align(
+                  alignment: Alignment.center,
+                  child: ElevatedButton(
+                      onPressed: () {},
+                      style: ElevatedButton.styleFrom(
+                          backgroundColor: mainColor,
+                          minimumSize: Size.fromHeight(48),
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(12))),
+                      child: Text(
+                        _getButtonText(_currentPageIndex),
+                        style: TextStyle(color: Colors.white),
+                      ))),
+            )
           ],
         ),
       ),
@@ -85,11 +108,20 @@ class _Onboarding extends State<OnboardingPage> {
   Widget _SecondOnboardPage() {
     return Container(
         child: Column(
-      children: [
-        Text("우따에서는 가능해요"),
-        Image.asset('assets/images/2.0x/img_chatting.png'),
-      ],
-    ));
+          children: [
+            _SkipTextButton(),
+            Container(
+              margin: const EdgeInsets.only(top: 72),
+              child: const Text(
+                "우따에서는 가능해요",
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+                margin: const EdgeInsets.only(top: 60),
+                child: Image.asset('assets/images/2.0x/img_matting_system.png')),
+          ],
+        ));
   }
 
   /**
@@ -98,11 +130,20 @@ class _Onboarding extends State<OnboardingPage> {
   Widget _ThirdOnboardPage() {
     return Container(
         child: Column(
-      children: [
-        Text("어서오세요 :)"),
-        Image.asset('assets/images/2.0x/img_chatting.png'),
-      ],
-    ));
+          children: [
+            _SkipTextButton(),
+            Container(
+              margin: const EdgeInsets.only(top: 72),
+              child: const Text(
+                "어서오세요:)",
+                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+              ),
+            ),
+            Container(
+                margin: const EdgeInsets.only(top: 92),
+                child: Image.asset('assets/images/2.0x/img_chatting.png')),
+          ],
+        ));
   }
 
   /**
@@ -125,8 +166,27 @@ class _Onboarding extends State<OnboardingPage> {
     );
   }
 
+  /**
+   * 특정페이지로 이동 함수
+   */
   void _goToPage(int pageIndex) {
     _pageController.animateToPage(pageIndex,
         duration: Duration(milliseconds: 300), curve: Curves.easeIn);
+  }
+
+  /**
+   * 각 페이지마다 button의 text를 return 한다.
+   */
+  String _getButtonText(int pageIndex) {
+    switch (pageIndex) {
+      case 0:
+        return "우따가 해결해드릴게요";
+      case 1:
+        return "함께 하실래요?";
+      case 2:
+        return "회원가입";
+      default:
+        return "";
+    }
   }
 }
