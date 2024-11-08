@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:go_router/go_router.dart';
 import 'package:uth/common/theme/colors.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
@@ -63,7 +64,11 @@ class _Onboarding extends State<OnboardingPage> {
               child: Align(
                   alignment: Alignment.center,
                   child: ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        _currentPageIndex == 2
+                            ? context.go('/signup')  // 마지막 페이지일 경우 회원가입페이지로 이동
+                            : null;
+                      },
                       style: ElevatedButton.styleFrom(
                           backgroundColor: mainColor,
                           minimumSize: Size.fromHeight(48),
@@ -108,20 +113,20 @@ class _Onboarding extends State<OnboardingPage> {
   Widget _SecondOnboardPage() {
     return Container(
         child: Column(
-          children: [
-            _SkipTextButton(),
-            Container(
-              margin: const EdgeInsets.only(top: 72),
-              child: const Text(
-                "우따에서는 가능해요",
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-                margin: const EdgeInsets.only(top: 60),
-                child: Image.asset('assets/images/2.0x/img_matting_system.png')),
-          ],
-        ));
+      children: [
+        _SkipTextButton(),
+        Container(
+          margin: const EdgeInsets.only(top: 72),
+          child: const Text(
+            "우따에서는 가능해요",
+            style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+            margin: const EdgeInsets.only(top: 60),
+            child: Image.asset('assets/images/2.0x/img_matting_system.png')),
+      ],
+    ));
   }
 
   /**
@@ -130,20 +135,20 @@ class _Onboarding extends State<OnboardingPage> {
   Widget _ThirdOnboardPage() {
     return Container(
         child: Column(
-          children: [
-            _SkipTextButton(),
-            Container(
-              margin: const EdgeInsets.only(top: 72),
-              child: const Text(
-                "어서오세요:)",
-                style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
-              ),
-            ),
-            Container(
-                margin: const EdgeInsets.only(top: 92),
-                child: Image.asset('assets/images/2.0x/img_chatting.png')),
-          ],
-        ));
+      children: [
+        _SkipTextButton(),
+        Container(
+          margin: const EdgeInsets.only(top: 72),
+          child: const Text(
+            "어서오세요:)",
+            style: TextStyle(fontSize: 28.0, fontWeight: FontWeight.bold),
+          ),
+        ),
+        Container(
+            margin: const EdgeInsets.only(top: 92),
+            child: Image.asset('assets/images/2.0x/img_chatting.png')),
+      ],
+    ));
   }
 
   /**
@@ -158,10 +163,15 @@ class _Onboarding extends State<OnboardingPage> {
             onPressed: () {
               _goToPage(2);
             },
-            child: Text(
-              "Skip",
-              style: TextStyle(fontSize: 13, color: grayColor_2),
-            ),
+            child: _currentPageIndex != 2
+                ? const Text(
+                    "Skip",
+                    style: TextStyle(fontSize: 13, color: grayColor_2),
+                  )
+                : const Text(
+                    "",
+                    style: TextStyle(fontSize: 13, color: grayColor_2),
+                  ),
           )),
     );
   }
