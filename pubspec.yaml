@@ -67,7 +67,7 @@ flutter:
     - assets/images/2.0x/img_frame.png
     - assets/images/2.0x/img_chatting.png
     - assets/images/2.0x/img_matting_system.png
-    - image/img_arrow_back.png
+    - assets/images/2.0x/img_arrow_left.png
 
 
   # To add assets to your application, add an assets section, like this:

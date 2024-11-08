@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:go_router/go_router.dart';
 import 'package:uth/screens/container/BottomNav.dart';
 import 'package:uth/screens/main/MainPage.dart';
@@ -9,6 +10,7 @@ import 'package:uth/screens/start/OnboardPage.dart';
 import 'package:uth/screens/start/StartPage.dart';
 
 void main() {
+  // debugPaintSizeEnabled = true;
   runApp(const MyApp());
 }
 
@@ -23,10 +25,10 @@ class MyApp extends StatelessWidget {
 
 GoRouter router() {
   return GoRouter(
-    initialLocation: '/start',
+    // initialLocation: '/start',
 
     // fixme : ui제작을 위해서 사용 추후삭제할 것
-    // initialLocation: '/container',
+    initialLocation: '/signup',
 
     routes: [
       GoRoute(
