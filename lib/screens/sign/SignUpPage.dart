@@ -79,8 +79,10 @@ class _SignUpPage extends State<SignUpPage> {
           child: Row(
             children: [
               Expanded( // TextField가 가능한 공간을 모두 차지하도록 설정
-                child: TextField(
-                  decoration: InputDecoration(hintText: "이메일 주소 입력"),
+                child: TextFormField(
+                  // TODO: 11/18일 작업 진행중...
+                  decoration: const InputDecoration(hintText: "이메일 주소 입력",
+                  counterText: ''),
                 ),
               ),
               SizedBox(width: 10), // TextField와 버튼 사이에 여백 추가
