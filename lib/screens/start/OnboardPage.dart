@@ -166,11 +166,11 @@ class _Onboarding extends State<OnboardingPage> {
             child: _currentPageIndex != 2
                 ? const Text(
                     "Skip",
-                    style: TextStyle(fontSize: 13, color: grayColor_2),
+                    style: TextStyle(fontSize: 13, color: grayColor_98),
                   )
                 : const Text(
                     "",
-                    style: TextStyle(fontSize: 13, color: grayColor_2),
+                    style: TextStyle(fontSize: 13, color: grayColor_98),
                   ),
           )),
     );

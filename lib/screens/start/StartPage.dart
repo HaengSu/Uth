@@ -91,7 +91,7 @@ class _StartPage extends State<StartPage> {
               },
               child: RichText(
                   text: const TextSpan(
-                      style: TextStyle(fontSize: 12.0, color: grayColor_1),
+                      style: TextStyle(fontSize: 12.0, color: grayColor_BE),
                       children: [
                     TextSpan(text: '이미 가입하였나요?'),
                     TextSpan(

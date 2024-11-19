@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uth/common/theme/colors.dart';
+import 'package:uth/screens/main.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -11,7 +12,28 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPage extends State<SignUpPage> {
   final PageController _pageController = PageController();
+  final TextEditingController _textEditingController = TextEditingController();
+  bool _isButtonEnabled = false;
+  bool _isDuplicateChecked = false;
+
   int _currentPageIndex = 0;
+
+  @override
+  void initState() {
+    super.initState();
+
+    _textEditingController.addListener(() {
+      setState(() {
+        _isButtonEnabled = _textEditingController.text.isNotEmpty;
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    super.dispose();
+    _textEditingController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -62,43 +84,74 @@ class _SignUpPage extends State<SignUpPage> {
    */
   Widget _InputEmailPage() {
     return Container(
-        child: Column(
-      children: [
-        Align(
-          alignment: Alignment.centerLeft,
-          child: Container(
-            margin: const EdgeInsets.only(top: 8, left: 20),
-            child: const Text(
-              "로그인에 사용할\n이메일을 입력해주세요.",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+      child: Column(
+        children: [
+          Align(
+            alignment: Alignment.centerLeft,
+            child: Container(
+              margin: const EdgeInsets.only(top: 8, left: 20),
+              child: const Text(
+                "로그인에 사용할\n이메일을 입력해주세요.",
+                style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
+              ),
             ),
           ),
-        ),
-        Container(
-          margin: const EdgeInsets.only(top: 27),
-          child: Row(
-            children: [
-              Expanded( // TextField가 가능한 공간을 모두 차지하도록 설정
-                child: TextFormField(
-                  // TODO: 11/18일 작업 진행중...
-                  decoration: const InputDecoration(hintText: "이메일 주소 입력",
-                  counterText: ''),
+          Container(
+            margin: const EdgeInsets.only(top: 27, left: 20, right: 20),
+            child: Row(
+              children: [
+                Expanded(
+                  // TextField가 가능한 공간을 모두 차지하도록 설정
+                  child: TextFormField(
+                    controller: _textEditingController,
+                    decoration: const InputDecoration(
+                        hintText: "이메일 주소 입력",
+                        hintStyle: TextStyle(color: grayColor_BD),
+                        counterText: '',
+                        enabledBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
+                          ),
+                        ),
+                        focusedBorder: UnderlineInputBorder(
+                          borderSide: BorderSide(
+                            color: mainColor, // 원하는 색상으로 변경
+                          ),
+                        )),
+                  ),
                 ),
-              ),
-              SizedBox(width: 10), // TextField와 버튼 사이에 여백 추가
+                const SizedBox(width: 7), // TextField와 버튼 사이에 여백 추가
 
-              ClipRRect(
-                borderRadius: BorderRadius.circular(100),
-                child: OutlinedButton(onPressed: () {
-
-                  // TODO: 중복확인 로직 작성
-
-                }, child: Text("중복확인")),
-              )
-            ],
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(100),
+                  child: OutlinedButton(
+                      onPressed: () {
+                        // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
+                      },
+                      style: OutlinedButton.styleFrom(
+                        backgroundColor:
+                            _isButtonEnabled ? mainColor : Colors.white,
+                        foregroundColor:
+                            _isButtonEnabled ? Colors.white : grayColor_98,
+                        side: BorderSide(
+                            color: _isButtonEnabled ? mainColor : grayColor_E0),
+                      ),
+                      child: Text("중복확인")),
+                ),
+              ],
+            ),
           ),
-        )
-      ],
-    ));
+          TextButton(
+            onPressed: () {},
+            child: Text("다음"),
+            style: TextButton.styleFrom(
+              backgroundColor: _isDuplicateChecked ? mainColor : grayColor_E0,
+              foregroundColor:
+                  _isDuplicateChecked ? Colors.white : grayColor_9E,
+            ), // TODO: 버튼 사이즈 조절 필요 11/20
+          )
+        ],
+      ),
+    );
   }
 }
