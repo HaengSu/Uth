@@ -55,7 +55,7 @@ class _SignUpPage extends State<SignUpPage> {
               child: ClipRRect(
                 borderRadius: BorderRadius.circular(50),
                 child: LinearProgressIndicator(
-                  value: 0.2,
+                  value: 0.15,
                   backgroundColor: grayColor_trans_16,
                   valueColor: AlwaysStoppedAnimation(mainColor),
                 ),
@@ -104,20 +104,34 @@ class _SignUpPage extends State<SignUpPage> {
                   // TextField가 가능한 공간을 모두 차지하도록 설정
                   child: TextFormField(
                     controller: _textEditingController,
-                    decoration: const InputDecoration(
+                    decoration: InputDecoration(
                         hintText: "이메일 주소 입력",
-                        hintStyle: TextStyle(color: grayColor_BD),
+                        hintStyle: const TextStyle(color: grayColor_BD),
                         counterText: '',
-                        enabledBorder: UnderlineInputBorder(
+                        enabledBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
                           ),
                         ),
-                        focusedBorder: UnderlineInputBorder(
+                        focusedBorder: const UnderlineInputBorder(
                           borderSide: BorderSide(
                             color: mainColor, // 원하는 색상으로 변경
                           ),
-                        )),
+                        ),
+                        suffixIcon: IconButton(
+                            onPressed: _textEditingController.clear,
+                            icon: const Icon(
+                              Icons.cancel_sharp,
+                              color: grayColor_BD,
+                              size: 24,
+                            )
+                        ),
+                        errorText: checkErrorText(),
+                        errorStyle:
+                            const TextStyle(color: Colors.red, fontSize: 11),
+                        errorMaxLines: 1,
+                        errorBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(color: Colors.red))),
                   ),
                 ),
                 const SizedBox(width: 7), // TextField와 버튼 사이에 여백 추가
@@ -126,7 +140,11 @@ class _SignUpPage extends State<SignUpPage> {
                   borderRadius: BorderRadius.circular(100),
                   child: OutlinedButton(
                       onPressed: () {
-                        // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
+                        setState(() {
+                          // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
+                          // FIXME : 임시로 사용 추후 삭제 필요
+                          _isDuplicateChecked = !_isDuplicateChecked;
+                        });
                       },
                       style: OutlinedButton.styleFrom(
                         backgroundColor:
@@ -141,17 +159,33 @@ class _SignUpPage extends State<SignUpPage> {
               ],
             ),
           ),
-          TextButton(
-            onPressed: () {},
-            child: Text("다음"),
-            style: TextButton.styleFrom(
-              backgroundColor: _isDuplicateChecked ? mainColor : grayColor_E0,
-              foregroundColor:
-                  _isDuplicateChecked ? Colors.white : grayColor_9E,
-            ), // TODO: 버튼 사이즈 조절 필요 11/20
+          Padding(
+            padding: const EdgeInsets.only(top: 32, left: 20, right: 20),
+            child: SizedBox(
+              width: double.infinity,
+              child: TextButton(
+                onPressed: () {
+                  // TODO: 페이지 전환
+                },
+                child: Text("다음"),
+                style: TextButton.styleFrom(
+                  padding: const EdgeInsets.only(top: 16, bottom: 16),
+                  shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(12.0)),
+                  backgroundColor:
+                      _isDuplicateChecked ? mainColor : grayColor_E0,
+                  foregroundColor:
+                      _isDuplicateChecked ? Colors.white : grayColor_9E,
+                ),
+              ),
+            ),
           )
         ],
       ),
     );
+  }
+
+  String checkErrorText() {
+    return _isDuplicateChecked == true ? "* 가입 가능한 이메일입니다." : "* 가입된 이메일입니다.";
   }
 }
