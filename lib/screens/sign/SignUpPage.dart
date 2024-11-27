@@ -143,6 +143,7 @@ class _SignUpPage extends State<SignUpPage> {
                         setState(() {
                           // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
                           // FIXME : 임시로 사용 추후 삭제 필요
+                          //testmessage
                           _isDuplicateChecked = !_isDuplicateChecked;
                         });
                       },
