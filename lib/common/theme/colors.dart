@@ -8,3 +8,4 @@ const grayColor_BD = Color(0xFFBDBDBD);
 const grayColor_E0 = Color(0xFFE0E0E0);
 const grayColor_9E = Color(0xFF9E9E9E);
 const grayColor_trans_16 = Color(0x4070737C);
+const errorColor = Color(0xFFEF2B2A);
