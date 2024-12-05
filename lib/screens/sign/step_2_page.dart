@@ -8,7 +8,7 @@ import 'package:uth/common/theme/colors.dart';
 final ValueNotifier<bool?> _isDuplicateCheckedNotifier =
     ValueNotifier<bool?>(null);
 
-Widget inputEmailPage(
+Widget inputPasswordPage(
     {required TextEditingController textInputCtr,
     required bool isButtonEnabled,
     required PageController pageController,
@@ -21,7 +21,7 @@ Widget inputEmailPage(
           child: Container(
             margin: const EdgeInsets.only(top: 8, left: 20),
             child: const Text(
-              "로그인에 사용할\n이메일을 입력해주세요.",
+              "로그인에 사용할\n비밀번호를 입력해주세요.",
               style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
             ),
           ),
