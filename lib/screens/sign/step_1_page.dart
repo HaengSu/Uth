@@ -5,6 +5,7 @@ import 'package:uth/common/theme/colors.dart';
  * 첫번째 페이지
  */
 
+
 final ValueNotifier<bool?> _isDuplicateCheckedNotifier =
     ValueNotifier<bool?>(null);
 
@@ -58,7 +59,7 @@ Widget inputEmailPage(
                             Icons.cancel_sharp,
                             color: grayColor_BD,
                             size: 24,
-                          )),
+                          ),),
                       errorText: checkErrorText(),
                       errorStyle: TextStyle(
                           color: _isDuplicateCheckedNotifier.value == true

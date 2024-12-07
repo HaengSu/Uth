@@ -91,7 +91,8 @@ class _SignUpPage extends State<SignUpPage> {
                       setState(() {
                         _progressValue = newValue;
                       });
-                    }
+                    },
+
                 )
 
               ],
