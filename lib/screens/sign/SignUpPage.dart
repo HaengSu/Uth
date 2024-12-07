@@ -13,10 +13,8 @@ class SignUpPage extends StatefulWidget {
 
 class _SignUpPage extends State<SignUpPage> {
   final PageController _pageController = PageController();
-  final TextEditingController _textEditingController = TextEditingController();
+  final TextEditingController textEditingController = TextEditingController();
   bool _isButtonEnabled = false;
-
-  bool? _isDuplicateChecked;
 
   double _progressValue = 0.15;
   int _currentPageIndex = 0;
@@ -25,9 +23,9 @@ class _SignUpPage extends State<SignUpPage> {
   void initState() {
     super.initState();
 
-    _textEditingController.addListener(() {
+    textEditingController.addListener(() {
       setState(() {
-        _isButtonEnabled = _textEditingController.text.isNotEmpty;
+        _isButtonEnabled = textEditingController.text.isNotEmpty;
       });
     });
   }
@@ -35,7 +33,7 @@ class _SignUpPage extends State<SignUpPage> {
   @override
   void dispose() {
     super.dispose();
-    _textEditingController.dispose();
+    textEditingController.dispose();
   }
 
   @override
@@ -73,28 +71,36 @@ class _SignUpPage extends State<SignUpPage> {
                 });
               },
               children: [
-                inputEmailPage(
-                    textInputCtr: _textEditingController,
-                    isButtonEnabled: _isButtonEnabled,
-                    pageController: _pageController,
-                    onProgressUpdate : (newValue) {
-                      setState(() {
-                        _progressValue = newValue;
-                      });
-                    }
-                ),
-                inputPasswordPage(
-                    textInputCtr: _textEditingController,
-                    isButtonEnabled: _isButtonEnabled,
-                    pageController: _pageController,
-                    onProgressUpdate : (newValue) {
-                      setState(() {
-                        _progressValue = newValue;
-                      });
-                    },
-
+                InputEmailPage(
+                  textInputCtr: textEditingController,
+                  pageController: _pageController,
+                  onProgressUpdate: (newValue) {
+                    setState(() {
+                      _progressValue = newValue;
+                    });
+                  },
                 )
-
+                // inputEmailPage(
+                //     textInputCtr: textEditingController,
+                //     isButtonEnabled: _isButtonEnabled,
+                //     pageController: _pageController,
+                //     onProgressUpdate : (newValue) {
+                //       setState(() {
+                //         _progressValue = newValue;
+                //       });
+                //     }
+                // ),
+                // inputPasswordPage(
+                //     textInputCtr: textEditingController,
+                //     isButtonEnabled: _isButtonEnabled,
+                //     pageController: _pageController,
+                //     onProgressUpdate : (newValue) {
+                //       setState(() {
+                //         _progressValue = newValue;
+                //       });
+                //     },
+                //
+                // )
               ],
             ))
           ],
@@ -128,7 +134,7 @@ class _SignUpPage extends State<SignUpPage> {
 //               Expanded(
 //                 // TextField가 가능한 공간을 모두 차지하도록 설정
 //                 child: TextFormField(
-//                   controller: _textEditingController,
+//                   controller: textEditingController,
 //                   decoration: InputDecoration(
 //                       hintText: "이메일 주소 입력",
 //                       hintStyle: const TextStyle(color: grayColor_BD),
@@ -145,7 +151,7 @@ class _SignUpPage extends State<SignUpPage> {
 //                       ),
 //                       suffixIcon: IconButton(
 //                           onPressed: () {
-//                             _textEditingController.clear();
+//                             textEditingController.clear();
 //                             _isDuplicateChecked = null;
 //                           },
 //                           icon: const Icon(
