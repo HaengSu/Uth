@@ -9,20 +9,22 @@ class InputEmailPage extends StatefulWidget {
   final TextEditingController textInputCtr;
   final PageController pageController;
   final Function(double) onProgressUpdate;
+  final bool isButtonEnabled;
 
   const InputEmailPage(
       {super.key,
       required this.textInputCtr,
       required this.pageController,
+      required this.isButtonEnabled,
       required this.onProgressUpdate});
 
   @override
   _InputEmailPage createState() => _InputEmailPage();
 }
 
-
 class _InputEmailPage extends State<InputEmailPage> {
-  final ValueNotifier<bool?> isDuplicateCheckedNotifier = ValueNotifier<bool?>(null);
+  final ValueNotifier<bool?> isDuplicateCheckedNotifier =
+      ValueNotifier<bool?>(null);
 
   @override
   Widget build(BuildContext context) {
@@ -80,9 +82,9 @@ class _InputEmailPage extends State<InputEmailPage> {
                                 : errorColor,
                             fontSize: 11),
                         errorMaxLines: 1,
-                        // errorBorder: const UnderlineInputBorder(
-                        //     borderSide:
-                        //         BorderSide(color: errorColor, width: 2)),
+                        errorBorder: const UnderlineInputBorder(
+                            borderSide:
+                                BorderSide(color: errorColor, width: 2)),
                         focusedErrorBorder: UnderlineInputBorder(
                             borderSide: BorderSide(
                           color: isDuplicateCheckedNotifier.value == true
@@ -107,12 +109,12 @@ class _InputEmailPage extends State<InputEmailPage> {
                                 : true;
                       },
                       style: OutlinedButton.styleFrom(
-                        // backgroundColor:
-                        //     isButtonEnabled ? mainColor : Colors.white,
-                        // foregroundColor:
-                        //     isButtonEnabled ? Colors.white : grayColor_98,
-                        // side: BorderSide(
-                        //     color: isButtonEnabled ? mainColor : grayColor_E0),
+                        backgroundColor:
+                            widget.isButtonEnabled ? mainColor : Colors.white,
+                        foregroundColor:
+                        widget.isButtonEnabled ? Colors.white : grayColor_98,
+                        side: BorderSide(
+                            color: widget.isButtonEnabled ? mainColor : grayColor_E0),
                       ),
                       child: Text("중복확인")),
                 ),
@@ -157,8 +159,8 @@ class _InputEmailPage extends State<InputEmailPage> {
     return isDuplicateCheckedNotifier.value == null
         ? null
         : (isDuplicateCheckedNotifier.value == true
-        ? "* 가입 가능한 이메일입니다."
-        : "* 가입된 이메일입니다.");
+            ? "* 가입 가능한 이메일입니다."
+            : "* 가입된 이메일입니다.");
   }
 }
 // Widget inputEmailPage(

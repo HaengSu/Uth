@@ -74,6 +74,7 @@ class _SignUpPage extends State<SignUpPage> {
                 InputEmailPage(
                   textInputCtr: textEditingController,
                   pageController: _pageController,
+                  isButtonEnabled: _isButtonEnabled,
                   onProgressUpdate: (newValue) {
                     setState(() {
                       _progressValue = newValue;
