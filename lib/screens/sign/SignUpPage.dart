@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:uth/common/theme/colors.dart';
@@ -72,9 +74,7 @@ class _SignUpPage extends State<SignUpPage> {
               },
               children: [
                 InputEmailPage(
-                  textInputCtr: textEditingController,
                   pageController: _pageController,
-                  isButtonEnabled: _isButtonEnabled,
                   onProgressUpdate: (newValue) {
                     setState(() {
                       _progressValue = newValue;

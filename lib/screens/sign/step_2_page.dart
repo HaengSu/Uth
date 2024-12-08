@@ -22,7 +22,7 @@ class InputPasswordPage extends StatefulWidget {
 
 class _InputPasswordPage extends State<InputPasswordPage> {
   final ValueNotifier<bool?> _isDuplicateCheckedNotifier =
-  ValueNotifier<bool?>(null);
+      ValueNotifier<bool?>(null);
   bool _isObscured = true;
 
   @override
@@ -75,16 +75,19 @@ class _InputPasswordPage extends State<InputPasswordPage> {
                           mainAxisSize: MainAxisSize.min,
                           children: [
                             IconButton(
-                                onPressed: () {},
+                                onPressed: () {
+                                  setState(() {
+                                    //text visiable 조절
+                                    _isObscured = !_isObscured;
+                                  });
+                                },
                                 icon: const Icon(
                                   Icons.visibility_off,
                                   color: grayColor_BD,
                                   size: 24,
                                 )),
                             IconButton(
-                                onPressed: () {
-                                  // TODO:  인풋 텍스트 초기화 로직 추가
-                                },
+                                onPressed: () {},
                                 icon: const Icon(
                                   Icons.cancel_sharp,
                                   color: grayColor_BD,
