@@ -80,28 +80,16 @@ class _SignUpPage extends State<SignUpPage> {
                       _progressValue = newValue;
                     });
                   },
+                ),
+                InputPasswordPage(
+                    textInputCtr: textEditingController,
+                    pageController: _pageController,
+                    onProgressUpdate : (newValue) {
+                      setState(() {
+                        _progressValue = newValue;
+                      });
+                    },
                 )
-                // inputEmailPage(
-                //     textInputCtr: textEditingController,
-                //     isButtonEnabled: _isButtonEnabled,
-                //     pageController: _pageController,
-                //     onProgressUpdate : (newValue) {
-                //       setState(() {
-                //         _progressValue = newValue;
-                //       });
-                //     }
-                // ),
-                // inputPasswordPage(
-                //     textInputCtr: textEditingController,
-                //     isButtonEnabled: _isButtonEnabled,
-                //     pageController: _pageController,
-                //     onProgressUpdate : (newValue) {
-                //       setState(() {
-                //         _progressValue = newValue;
-                //       });
-                //     },
-                //
-                // )
               ],
             ))
           ],
