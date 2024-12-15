@@ -1,10 +1,5 @@
-import 'dart:developer';
-
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:logger/logger.dart';
 import 'package:uth/common/theme/colors.dart';
-import 'package:uth/utils/logger.dart';
 
 /**
  * 첫번째 페이지
