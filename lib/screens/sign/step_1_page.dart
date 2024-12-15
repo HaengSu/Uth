@@ -55,100 +55,108 @@ class _InputEmailPage extends State<InputEmailPage> {
               ),
             ),
           ),
-          Container(
-            margin: const EdgeInsets.only(top: 27, left: 20, right: 20),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Expanded(
-                  // TextField가 가능한 공간을 모두 차지하도록 설정
-                  child: TextFormField(
-                    controller: textInputCtr,
-                    decoration: InputDecoration(
-                        hintText: "이메일 주소 입력",
-                        hintStyle: const TextStyle(color: grayColor_BD),
-                        counterText: '',
-                        enabledBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
-                          ),
+          ValueListenableBuilder(
+              valueListenable: isDuplicateCheckedNotifier,
+              builder: (context, isDuplicated, child) {
+                return Container(
+                  margin: const EdgeInsets.only(top: 27, left: 20, right: 20),
+                  child: Row(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Expanded(
+                        // TextField가 가능한 공간을 모두 차지하도록 설정
+                        child: TextFormField(
+                          controller: textInputCtr,
+                          decoration: InputDecoration(
+                              hintText: "이메일 주소 입력",
+                              hintStyle: const TextStyle(color: grayColor_BD),
+                              counterText: '',
+                              enabledBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
+                                ),
+                              ),
+                              focusedBorder: const UnderlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: mainColor, // 원하는 색상으로 변경
+                                ),
+                              ),
+                              suffixIcon: IconButton(
+                                onPressed: () {
+                                  textInputCtr.clear();
+                                  isDuplicateCheckedNotifier.value = null;
+                                },
+                                icon: const Icon(
+                                  Icons.cancel_sharp,
+                                  color: grayColor_BD,
+                                  size: 24,
+                                ),
+                              ),
+                              errorText: checkErrorText(),
+                              errorStyle: TextStyle(
+                                  color:
+                                  isDuplicated == true
+                                          ? mainColor
+                                          : errorColor,
+                                  fontSize: 11),
+                              errorMaxLines: 1,
+                              errorBorder: const UnderlineInputBorder(
+                                  borderSide:
+                                      BorderSide(color: errorColor, width: 2)),
+                              focusedErrorBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                color: isDuplicated == true
+                                    ? mainColor
+                                    : errorColor, // 에러 상태에서 포커스가 있는 경우
+                                width: 2,
+                              ))),
                         ),
-                        focusedBorder: const UnderlineInputBorder(
-                          borderSide: BorderSide(
-                            color: mainColor, // 원하는 색상으로 변경
-                          ),
-                        ),
-                        suffixIcon: IconButton(
-                          onPressed: () {
-                            textInputCtr.clear();
-                            isDuplicateCheckedNotifier.value = null;
-                          },
-                          icon: const Icon(
-                            Icons.cancel_sharp,
-                            color: grayColor_BD,
-                            size: 24,
-                          ),
-                        ),
-                        errorText: checkErrorText(),
-                        errorStyle: TextStyle(
-                            color: isDuplicateCheckedNotifier.value == true
-                                ? mainColor
-                                : errorColor,
-                            fontSize: 11),
-                        errorMaxLines: 1,
-                        errorBorder: const UnderlineInputBorder(
-                            borderSide:
-                                BorderSide(color: errorColor, width: 2)),
-                        focusedErrorBorder: UnderlineInputBorder(
-                            borderSide: BorderSide(
-                          color: isDuplicateCheckedNotifier.value == true
-                              ? mainColor
-                              : errorColor, // 에러 상태에서 포커스가 있는 경우
-                          width: 2,
-                        ))),
+                      ),
+                      const SizedBox(width: 7), // TextField와 버튼 사이에 여백 추가
+
+                      ValueListenableBuilder<bool>(
+                          valueListenable: isButtonEnabled,
+                          builder: (context, isEnabled, child) {
+                            return ClipRRect(
+                              borderRadius: BorderRadius.circular(100),
+                              child: OutlinedButton(
+                                  onPressed: isEnabled
+                                      ? () {
+                                          // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
+                                          // FIXME : 임시로 사용 추후 삭제 필요
+
+                                          isDuplicateCheckedNotifier.value =
+                                              isDuplicateCheckedNotifier
+                                                          .value ==
+                                                      null
+                                                  ? false
+                                                  : true;
+                                          debugPrint(
+                                              "##INFO >> isDuplicateCheckedNotifier = ${isDuplicateCheckedNotifier.value}");
+                                        }
+                                      : () {
+                                          debugPrint(
+                                              "##ERROR >> button isEnabled is false");
+                                        },
+                                  style: OutlinedButton.styleFrom(
+                                    backgroundColor: isEnabled == true
+                                        ? mainColor
+                                        : Colors.white,
+                                    foregroundColor: isEnabled == true
+                                        ? Colors.white
+                                        : grayColor_98,
+                                    side: BorderSide(
+                                        color: isEnabled == true
+                                            ? mainColor
+                                            : grayColor_E0),
+                                  ),
+                                  child: Text("중복확인")),
+                            );
+                          })
+                    ],
                   ),
-                ),
-                const SizedBox(width: 7), // TextField와 버튼 사이에 여백 추가
-
-                ValueListenableBuilder<bool>(
-                    valueListenable: isButtonEnabled,
-                    builder: (context, isEnabled, child) {
-                      return ClipRRect(
-                        borderRadius: BorderRadius.circular(100),
-                        child: OutlinedButton(
-                            onPressed: isEnabled
-                                ? () {
-                                    // TODO: 중복확인 로직 작성 , _isDuplicateChecked 변수에 결과값 적용시킬 것
-                                    // FIXME : 임시로 사용 추후 삭제 필요
-
-                                    isDuplicateCheckedNotifier.value =
-                                        isDuplicateCheckedNotifier.value == null
-                                            ? false
-                                            : true;
-                                    debugPrint(
-                                        "##INFO >> isDuplicateCheckedNotifier = ${isDuplicateCheckedNotifier.value}");
-                                  }
-                                : () {
-                                    debugPrint(
-                                        "##ERROR >> button isEnabled is false");
-                                  },
-                            style: OutlinedButton.styleFrom(
-                              backgroundColor:
-                                  isEnabled == true ? mainColor : Colors.white,
-                              foregroundColor: isEnabled == true
-                                  ? Colors.white
-                                  : grayColor_98,
-                              side: BorderSide(
-                                  color: isEnabled == true
-                                      ? mainColor
-                                      : grayColor_E0),
-                            ),
-                            child: Text("중복확인")),
-                      );
-                    })
-              ],
-            ),
-          ),
+                );
+              }),
           ValueListenableBuilder<bool?>(
               valueListenable: isDuplicateCheckedNotifier,
               builder: (context, isDuplicated, child) {
