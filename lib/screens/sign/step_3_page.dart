@@ -1,31 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:uth/common/theme/colors.dart';
+import 'package:uth/screens/data/UserProfile.dart';
 import 'package:uth/screens/main.dart';
 
 /**
  * 두번째 페이지
  */
-class InputPasswordPage extends StatefulWidget {
+class InputUserProfilePage extends StatefulWidget {
   final PageController pageController;
   final Function(double) onProgressUpdate;
 
-  const InputPasswordPage(
+  const InputUserProfilePage(
       {super.key,
       required this.pageController,
       required this.onProgressUpdate});
 
   @override
-  _InputPasswordPage createState() => _InputPasswordPage();
+  _InputUserProfilePage createState() => _InputUserProfilePage();
 }
 
-class _InputPasswordPage extends State<InputPasswordPage> {
-  final TextEditingController textInputFirstPW = TextEditingController();
-  final TextEditingController textInputSecondPW = TextEditingController();
-  final ValueNotifier<bool?> _isPWMatch = ValueNotifier<bool?>(null);
+class _InputUserProfilePage extends State<InputUserProfilePage> {
+  final TextEditingController textInputName = TextEditingController();
+  final TextEditingController textInputNickName = TextEditingController();
+  final ValueNotifier<bool?> isNickNameExist = ValueNotifier<bool?>(null);
 
-  bool _isFirstObscured = true;
-  bool _isSecondObscured = true;
+  late UserProfile userProfile;   // 유저의 회원가입시 데이터를 담을 변수
+
 
   @override
   void initState() {
@@ -35,8 +36,6 @@ class _InputPasswordPage extends State<InputPasswordPage> {
   @override
   void dispose() {
     super.dispose();
-    textInputFirstPW.dispose();
-    textInputSecondPW.dispose();
   }
 
   @override
@@ -49,7 +48,7 @@ class _InputPasswordPage extends State<InputPasswordPage> {
             child: Container(
               margin: const EdgeInsets.only(top: 8, left: 20),
               child: const Text(
-                "로그인에 사용할\n비밀번호를 입력해주세요.",
+                "(필수)회원정보를\n입력해주세요.",
                 style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
               ),
             ),
@@ -154,6 +153,8 @@ class _InputPasswordPage extends State<InputPasswordPage> {
                         _isPWMatch.value = false;
                       }
                     }
+                    debugPrint(
+                        "##INFO >> inputText.length= ${inputText.length}");
 
                     setState(() {});
                   },
