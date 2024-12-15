@@ -19,12 +19,11 @@ class InputEmailPage extends StatefulWidget {
 }
 
 class _InputEmailPage extends State<InputEmailPage> {
+  final TextEditingController textInputCtr = TextEditingController();
+
   final ValueNotifier<bool?> isDuplicateCheckedNotifier =
       ValueNotifier<bool?>(null);
-
   final ValueNotifier<bool> isButtonEnabled = ValueNotifier<bool>(false);
-
-  final TextEditingController textInputCtr = TextEditingController();
 
   @override
   void initState() {
@@ -67,6 +66,10 @@ class _InputEmailPage extends State<InputEmailPage> {
                         // TextField가 가능한 공간을 모두 차지하도록 설정
                         child: TextFormField(
                           controller: textInputCtr,
+                          onChanged: (text) {
+                            setState(() {
+                            });
+                          },
                           decoration: InputDecoration(
                               hintText: "이메일 주소 입력",
                               hintStyle: const TextStyle(color: grayColor_BD),
@@ -81,23 +84,25 @@ class _InputEmailPage extends State<InputEmailPage> {
                                   color: mainColor, // 원하는 색상으로 변경
                                 ),
                               ),
-                              suffixIcon: IconButton(
-                                onPressed: () {
-                                  textInputCtr.clear();
-                                  isDuplicateCheckedNotifier.value = null;
-                                },
-                                icon: const Icon(
-                                  Icons.cancel_sharp,
-                                  color: grayColor_BD,
-                                  size: 24,
-                                ),
-                              ),
+                              suffixIcon:  textInputCtr.text.isNotEmpty ? IconButton(
+                                      onPressed: () {
+                                        textInputCtr.clear();
+                                        isDuplicateCheckedNotifier.value = null;
+                                        setState(() {
+
+                                        });
+                                      },
+                                      icon: const Icon(
+                                        Icons.cancel_sharp,
+                                        color: grayColor_BD,
+                                        size: 24,
+                                      ),
+                                    ) : null ,
                               errorText: checkErrorText(),
                               errorStyle: TextStyle(
-                                  color:
-                                  isDuplicated == true
-                                          ? mainColor
-                                          : errorColor,
+                                  color: isDuplicated == true
+                                      ? mainColor
+                                      : errorColor,
                                   fontSize: 11),
                               errorMaxLines: 1,
                               errorBorder: const UnderlineInputBorder(

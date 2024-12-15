@@ -73,16 +73,16 @@ class _SignUpPage extends State<SignUpPage> {
                 });
               },
               children: [
-                InputEmailPage(
-                  pageController: _pageController,
-                  onProgressUpdate: (newValue) {
-                    setState(() {
-                      _progressValue = newValue;
-                    });
-                  },
-                ),
+                // TODO: 테스트를 위해서 임시 주석 처리
+                // InputEmailPage(
+                //   pageController: _pageController,
+                //   onProgressUpdate: (newValue) {
+                //     setState(() {
+                //       _progressValue = newValue;
+                //     });
+                //   },
+                // ),
                 InputPasswordPage(
-                    textInputCtr: textEditingController,
                     pageController: _pageController,
                     onProgressUpdate : (newValue) {
                       setState(() {
