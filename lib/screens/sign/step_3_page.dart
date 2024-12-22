@@ -79,8 +79,7 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
                     valueListenable: isNickNameExist,
                     builder: (context, isDuplicated, child) {
                       return Container(
-                        margin:
-                            const EdgeInsets.only(top: 27, left: 20, right: 20),
+                        margin: const EdgeInsets.only(top: 14),
                         child: Row(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -152,6 +151,12 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
               ],
             ),
           ),
+          Text("생년월일"),
+          Row(
+            children: [
+              DropdownButton(items: , onChanged: )
+            ],
+          ),
           ValueListenableBuilder(
               valueListenable: isNickNameExist,
               builder: (context, isExist, child) {
@@ -166,7 +171,7 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
                             duration: Duration(milliseconds: 300),
                             curve: Curves.easeInOutSine);
 
-                        double updateValue = 0.3;
+                        double updateValue = 0.5;
                         widget.onProgressUpdate(updateValue);
                       },
                       child: Text("다음"),
@@ -182,7 +187,7 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
                     ),
                   ),
                 );
-              })
+              }),
         ],
       ),
     );
