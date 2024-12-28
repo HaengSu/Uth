@@ -27,11 +27,13 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
   final List<String> _months = [];
   final List<String> _days = [];
 
-  late String selectedYear;
-  late String selectedMonth;
-  late String selectedDay;
-
   late UserProfile userProfile; // 유저의 회원가입시 데이터를 담을 변수
+
+  late String selectedYear; // 선택된 년
+  late String selectedMonth; // 선택된 월
+  late String selectedDay; // 선택된 일
+
+  late Gender selectedGender = Gender.FEMALE; // 선택된 성별
 
   @override
   void initState() {
@@ -238,33 +240,74 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
                       style: TextStyle(color: grayColor_9E, fontSize: 14)))
             ],
           ),
+          Container(
+            margin: EdgeInsets.only(top: 27),
+            child: Text(
+              "성별",
+              style: TextStyle(fontSize: 16),
+            ),
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.start,
+            children: [
+              Expanded(
+                flex: 1,
+                child: RadioListTile(
+                  title: Text(
+                    "여성",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  value: Gender.FEMALE,
+                  groupValue: selectedGender,
+                  onChanged: (Gender? value) {
+                    setState(() {
+                      selectedGender = value!;
+                    });
+                  },
+                ),
+              ),
+              Expanded(
+                flex: 2,
+                child: RadioListTile(
+                  title: Text(
+                    "남성",
+                    style: TextStyle(fontSize: 14),
+                  ),
+                  value: Gender.MALE,
+                  groupValue: selectedGender,
+                  onChanged: (value) {
+                    setState(() {
+                      selectedGender = value!;
+                    });
+                  },
+                ),
+              ),
+            ],
+          ),
           ValueListenableBuilder(
               valueListenable: isNickNameExist,
               builder: (context, isExist, child) {
-                return Padding(
-                  padding: const EdgeInsets.only(top: 32),
-                  child: SizedBox(
-                    width: double.infinity,
-                    child: TextButton(
-                      onPressed: () {
-                        // 두번째 페이지로 이동
-                        widget.pageController.nextPage(
-                            duration: Duration(milliseconds: 300),
-                            curve: Curves.easeInOutSine);
+                // fixme : 아래의 다음 버튼 사이즈 이슈로 에러발생... 해결필요
+                return Container(
+                  child: TextButton(
+                    onPressed: () {
+                      // 네번째 페이지로 이동
+                      widget.pageController.nextPage(
+                          duration: Duration(milliseconds: 300),
+                          curve: Curves.easeInOutSine);
 
-                        double updateValue = 0.5;
-                        widget.onProgressUpdate(updateValue);
-                      },
-                      child: Text("다음"),
-                      style: TextButton.styleFrom(
-                        padding: const EdgeInsets.only(top: 16, bottom: 16),
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(12.0)),
-                        backgroundColor:
-                            isExist == true ? grayColor_E0 : mainColor,
-                        foregroundColor:
-                            isExist == true ? grayColor_9E : Colors.white,
-                      ),
+                      double updateValue = 0.65;
+                      widget.onProgressUpdate(updateValue);
+                    },
+                    child: Text("다음"),
+                    style: TextButton.styleFrom(
+                      padding: const EdgeInsets.only(top: 16, bottom: 16),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0)),
+                      backgroundColor:
+                          isExist == true ? grayColor_E0 : mainColor,
+                      foregroundColor:
+                          isExist == true ? grayColor_9E : Colors.white,
                     ),
                   ),
                 );
@@ -317,3 +360,5 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
     return resColor;
   }
 }
+
+enum Gender { MALE, FEMALE }

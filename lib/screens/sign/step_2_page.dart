@@ -228,12 +228,12 @@ class _InputPasswordPage extends State<InputPasswordPage> {
                     width: double.infinity,
                     child: TextButton(
                       onPressed: () {
-                        // 두번째 페이지로 이동
+                        // 세번째 페이지로 이동
                         widget.pageController.nextPage(
                             duration: Duration(milliseconds: 300),
                             curve: Curves.easeInOutSine);
 
-                        double updateValue = 0.3;
+                        double updateValue = 0.5;
                         widget.onProgressUpdate(updateValue);
                       },
                       child: Text("다음"),
