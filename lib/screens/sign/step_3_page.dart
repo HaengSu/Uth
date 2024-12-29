@@ -67,254 +67,273 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      margin: EdgeInsets.only(left: 20, right: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Container(
-            margin: const EdgeInsets.only(top: 8),
-            child: const Text(
-              "(필수)회원정보를\n입력해주세요.",
-              style: TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Container(
-            margin: const EdgeInsets.only(top: 27),
+    return Scaffold(
+        resizeToAvoidBottomInset: false,
+        body: SingleChildScrollView(
+          keyboardDismissBehavior: ScrollViewKeyboardDismissBehavior.onDrag,
+          child: Container(
+            margin: EdgeInsets.only(left: 20, right: 20),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                TextFormField(
-                  decoration: InputDecoration(
-                    hintText: "이름",
-                    hintStyle: const TextStyle(color: grayColor_BD),
-                    enabledBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
-                      ),
-                    ),
-                    focusedBorder: const UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: mainColor, // 원하는 색상으로 변경
-                      ),
-                    ),
+                Container(
+                  margin: const EdgeInsets.only(top: 8),
+                  child: const Text(
+                    "(필수)회원정보를\n입력해주세요.",
+                    style:
+                        TextStyle(fontSize: 20.0, fontWeight: FontWeight.bold),
                   ),
                 ),
-                const SizedBox(width: 7),
-                /**
-                 *  닉네임 입력란
-                 */
+                Container(
+                  margin: const EdgeInsets.only(top: 27),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      TextFormField(
+                        decoration: InputDecoration(
+                          hintText: "이름",
+                          hintStyle: const TextStyle(color: grayColor_BD),
+                          enabledBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: grayColor_BD, // 기본(선택되지 않은) 상태의 색상
+                            ),
+                          ),
+                          focusedBorder: const UnderlineInputBorder(
+                            borderSide: BorderSide(
+                              color: mainColor, // 원하는 색상으로 변경
+                            ),
+                          ),
+                        ),
+                      ),
+                      const SizedBox(width: 7),
+                      /**
+                       *  닉네임 입력란
+                       */
+                      ValueListenableBuilder(
+                          valueListenable: isNickNameExist,
+                          builder: (context, isDuplicated, child) {
+                            return Container(
+                              margin: const EdgeInsets.only(top: 14),
+                              child: Row(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Expanded(
+                                    // TextField가 가능한 공간을 모두 차지하도록 설정
+                                    child: TextFormField(
+                                      controller: textInputNickName,
+                                      decoration: InputDecoration(
+                                          hintText: "닉네임",
+                                          hintStyle: const TextStyle(
+                                              color: grayColor_BD),
+                                          counterText: '',
+                                          enabledBorder:
+                                              const UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color:
+                                                  grayColor_BD, // 기본(선택되지 않은) 상태의 색상
+                                            ),
+                                          ),
+                                          focusedBorder:
+                                              const UnderlineInputBorder(
+                                            borderSide: BorderSide(
+                                              color: mainColor, // 원하는 색상으로 변경
+                                            ),
+                                          ),
+                                          errorText: checkErrorText(),
+                                          errorStyle: TextStyle(
+                                              color: isDuplicated == true
+                                                  ? mainColor
+                                                  : errorColor,
+                                              fontSize: 11),
+                                          errorMaxLines: 1,
+                                          errorBorder:
+                                              const UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                                      color: errorColor,
+                                                      width: 2)),
+                                          focusedErrorBorder:
+                                              UnderlineInputBorder(
+                                                  borderSide: BorderSide(
+                                            color: isDuplicated == true
+                                                ? mainColor
+                                                : errorColor,
+                                            // 에러 상태에서 포커스가 있는 경우
+                                            width: 2,
+                                          ))),
+                                    ),
+                                  ),
+                                  const SizedBox(width: 7),
+                                  // TextField와 버튼 사이에 여백 추가
+
+                                  OutlinedButton(
+                                      onPressed: () {},
+                                      style: OutlinedButton.styleFrom(
+                                        backgroundColor:
+                                            textInputNickName.text.isNotEmpty ==
+                                                    true
+                                                ? mainColor
+                                                : Colors.white,
+                                        foregroundColor:
+                                            textInputNickName.text.isNotEmpty ==
+                                                    true
+                                                ? Colors.white
+                                                : grayColor_98,
+                                        side: BorderSide(
+                                            color: textInputNickName
+                                                        .text.isNotEmpty ==
+                                                    true
+                                                ? mainColor
+                                                : grayColor_E0),
+                                      ),
+                                      child: Text("중복확인")),
+                                ],
+                              ),
+                            );
+                          }),
+                    ],
+                  ),
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 27),
+                  child: Text(
+                    "생년월일",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Expanded(
+                        child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: DropdownButton2(
+                                isExpanded: true,
+                                value: selectedYear,
+                                items: _years
+                                    .map((item) => DropdownMenuItem(
+                                        value: item, child: Text(item)))
+                                    .toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedYear = value!;
+                                  });
+                                },
+                                style: TextStyle(
+                                    color: grayColor_9E, fontSize: 14)))),
+                    Expanded(
+                        child: Container(
+                            margin: EdgeInsets.only(right: 10),
+                            child: DropdownButton2(
+                                isExpanded: true,
+                                value: selectedMonth,
+                                items: _months
+                                    .map((item) => DropdownMenuItem(
+                                        value: item, child: Text(item)))
+                                    .toList(),
+                                onChanged: (value) {
+                                  setState(() {
+                                    selectedMonth = value!;
+                                  });
+                                },
+                                style: TextStyle(
+                                    color: grayColor_9E, fontSize: 14)))),
+                    Expanded(
+                        child: DropdownButton2(
+                            isExpanded: true,
+                            value: selectedDay,
+                            items: _days
+                                .map((item) => DropdownMenuItem(
+                                    value: item, child: Text(item)))
+                                .toList(),
+                            onChanged: (value) {
+                              setState(() {
+                                selectedDay = value!;
+                              });
+                            },
+                            style:
+                                TextStyle(color: grayColor_9E, fontSize: 14)))
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 27),
+                  child: Text(
+                    "성별",
+                    style: TextStyle(fontSize: 16),
+                  ),
+                ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Expanded(
+                      flex: 1,
+                      child: RadioListTile(
+                        title: Text(
+                          "여성",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        value: Gender.FEMALE,
+                        groupValue: selectedGender,
+                        onChanged: (Gender? value) {
+                          setState(() {
+                            selectedGender = value!;
+                          });
+                        },
+                      ),
+                    ),
+                    Expanded(
+                      flex: 2,
+                      child: RadioListTile(
+                        title: Text(
+                          "남성",
+                          style: TextStyle(fontSize: 14),
+                        ),
+                        value: Gender.MALE,
+                        groupValue: selectedGender,
+                        onChanged: (value) {
+                          setState(() {
+                            selectedGender = value!;
+                          });
+                        },
+                      ),
+                    ),
+                  ],
+                ),
                 ValueListenableBuilder(
                     valueListenable: isNickNameExist,
-                    builder: (context, isDuplicated, child) {
+                    builder: (context, isExist, child) {
                       return Container(
-                        margin: const EdgeInsets.only(top: 14),
-                        child: Row(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Expanded(
-                              // TextField가 가능한 공간을 모두 차지하도록 설정
-                              child: TextFormField(
-                                controller: textInputNickName,
-                                decoration: InputDecoration(
-                                    hintText: "닉네임",
-                                    hintStyle:
-                                        const TextStyle(color: grayColor_BD),
-                                    counterText: '',
-                                    enabledBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color:
-                                            grayColor_BD, // 기본(선택되지 않은) 상태의 색상
-                                      ),
-                                    ),
-                                    focusedBorder: const UnderlineInputBorder(
-                                      borderSide: BorderSide(
-                                        color: mainColor, // 원하는 색상으로 변경
-                                      ),
-                                    ),
-                                    errorText: checkErrorText(),
-                                    errorStyle: TextStyle(
-                                        color: isDuplicated == true
-                                            ? mainColor
-                                            : errorColor,
-                                        fontSize: 11),
-                                    errorMaxLines: 1,
-                                    errorBorder: const UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                            color: errorColor, width: 2)),
-                                    focusedErrorBorder: UnderlineInputBorder(
-                                        borderSide: BorderSide(
-                                      color: isDuplicated == true
-                                          ? mainColor
-                                          : errorColor,
-                                      // 에러 상태에서 포커스가 있는 경우
-                                      width: 2,
-                                    ))),
-                              ),
-                            ),
-                            const SizedBox(width: 7), // TextField와 버튼 사이에 여백 추가
+                        margin: EdgeInsets.only(top: 14),
+                        child: SizedBox(
+                            width: double.infinity,
+                            child: TextButton(
+                              onPressed: () {
+                                // 네번째 페이지로 이동
+                                widget.pageController.nextPage(
+                                    duration: Duration(milliseconds: 300),
+                                    curve: Curves.easeInOutSine);
 
-                            OutlinedButton(
-                                onPressed: () {},
-                                style: OutlinedButton.styleFrom(
-                                  backgroundColor:
-                                      textInputNickName.text.isNotEmpty == true
-                                          ? mainColor
-                                          : Colors.white,
-                                  foregroundColor:
-                                      textInputNickName.text.isNotEmpty == true
-                                          ? Colors.white
-                                          : grayColor_98,
-                                  side: BorderSide(
-                                      color:
-                                          textInputNickName.text.isNotEmpty ==
-                                                  true
-                                              ? mainColor
-                                              : grayColor_E0),
-                                ),
-                                child: Text("중복확인")),
-                          ],
-                        ),
+                                double updateValue = 0.65;
+                                widget.onProgressUpdate(updateValue);
+                              },
+                              child: Text("다음"),
+                              style: TextButton.styleFrom(
+                                padding:
+                                    const EdgeInsets.only(top: 16, bottom: 16),
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(12.0)),
+                                backgroundColor:
+                                    isExist == true ? grayColor_E0 : mainColor,
+                                foregroundColor: isExist == true
+                                    ? grayColor_9E
+                                    : Colors.white,
+                              ),
+                            )),
                       );
                     }),
               ],
             ),
           ),
-          Container(
-            margin: EdgeInsets.only(top: 27),
-            child: Text(
-              "생년월일",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Expanded(
-                  child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      child: DropdownButton2(
-                          isExpanded: true,
-                          value: selectedYear,
-                          items: _years
-                              .map((item) => DropdownMenuItem(
-                                  value: item, child: Text(item)))
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedYear = value!;
-                            });
-                          },
-                          style:
-                              TextStyle(color: grayColor_9E, fontSize: 14)))),
-              Expanded(
-                  child: Container(
-                      margin: EdgeInsets.only(right: 10),
-                      child: DropdownButton2(
-                          isExpanded: true,
-                          value: selectedMonth,
-                          items: _months
-                              .map((item) => DropdownMenuItem(
-                                  value: item, child: Text(item)))
-                              .toList(),
-                          onChanged: (value) {
-                            setState(() {
-                              selectedMonth = value!;
-                            });
-                          },
-                          style:
-                              TextStyle(color: grayColor_9E, fontSize: 14)))),
-              Expanded(
-                  child: DropdownButton2(
-                      isExpanded: true,
-                      value: selectedDay,
-                      items: _days
-                          .map((item) =>
-                              DropdownMenuItem(value: item, child: Text(item)))
-                          .toList(),
-                      onChanged: (value) {
-                        setState(() {
-                          selectedDay = value!;
-                        });
-                      },
-                      style: TextStyle(color: grayColor_9E, fontSize: 14)))
-            ],
-          ),
-          Container(
-            margin: EdgeInsets.only(top: 27),
-            child: Text(
-              "성별",
-              style: TextStyle(fontSize: 16),
-            ),
-          ),
-          Row(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Expanded(
-                flex: 1,
-                child: RadioListTile(
-                  title: Text(
-                    "여성",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  value: Gender.FEMALE,
-                  groupValue: selectedGender,
-                  onChanged: (Gender? value) {
-                    setState(() {
-                      selectedGender = value!;
-                    });
-                  },
-                ),
-              ),
-              Expanded(
-                flex: 2,
-                child: RadioListTile(
-                  title: Text(
-                    "남성",
-                    style: TextStyle(fontSize: 14),
-                  ),
-                  value: Gender.MALE,
-                  groupValue: selectedGender,
-                  onChanged: (value) {
-                    setState(() {
-                      selectedGender = value!;
-                    });
-                  },
-                ),
-              ),
-            ],
-          ),
-          ValueListenableBuilder(
-              valueListenable: isNickNameExist,
-              builder: (context, isExist, child) {
-                // fixme : 아래의 다음 버튼 사이즈 이슈로 에러발생... 해결필요
-                return Container(
-                  child: TextButton(
-                    onPressed: () {
-                      // 네번째 페이지로 이동
-                      widget.pageController.nextPage(
-                          duration: Duration(milliseconds: 300),
-                          curve: Curves.easeInOutSine);
-
-                      double updateValue = 0.65;
-                      widget.onProgressUpdate(updateValue);
-                    },
-                    child: Text("다음"),
-                    style: TextButton.styleFrom(
-                      padding: const EdgeInsets.only(top: 16, bottom: 16),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0)),
-                      backgroundColor:
-                          isExist == true ? grayColor_E0 : mainColor,
-                      foregroundColor:
-                          isExist == true ? grayColor_9E : Colors.white,
-                    ),
-                  ),
-                );
-              }),
-        ],
-      ),
-    );
+        ));
   }
 
   String? checkErrorText() {

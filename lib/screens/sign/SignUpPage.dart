@@ -6,6 +6,7 @@ import 'package:uth/common/theme/colors.dart';
 import 'package:uth/screens/sign/step_1_page.dart';
 import 'package:uth/screens/sign/step_2_page.dart';
 import 'package:uth/screens/sign/step_3_page.dart';
+import 'package:uth/screens/sign/step_4_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -91,7 +92,15 @@ class _SignUpPage extends State<SignUpPage> {
                 //       });
                 //     },
                 // ),
-                InputUserProfilePage(
+                // InputUserProfilePage(
+                //   pageController: _pageController,
+                //   onProgressUpdate : (newValue) {
+                //     setState(() {
+                //       _progressValue = newValue;
+                //     });
+                //   },
+                // ),
+                InputLicensePage(
                   pageController: _pageController,
                   onProgressUpdate : (newValue) {
                     setState(() {
