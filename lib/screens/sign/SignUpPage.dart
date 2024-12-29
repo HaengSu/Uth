@@ -51,7 +51,7 @@ class _SignUpPage extends State<SignUpPage> {
               alignment: Alignment.centerLeft,
               child: Container(
                 margin: EdgeInsets.only(top: 59, left: 14),
-                child: Image.asset('assets/images/2.0x/img_arrow_left.png',
+                child: Image.asset('assets/images/img_arrow_left.png',
                     width: 24, height: 24),
               ),
             ),

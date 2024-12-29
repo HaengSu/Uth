@@ -102,7 +102,7 @@ class _Onboarding extends State<OnboardingPage> {
         ),
         Container(
             margin: const EdgeInsets.only(top: 92),
-            child: Image.asset('assets/images/2.0x/img_chatting.png')),
+            child: Image.asset('assets/images/img_chatting.png')),
       ],
     ));
   }
@@ -124,7 +124,7 @@ class _Onboarding extends State<OnboardingPage> {
         ),
         Container(
             margin: const EdgeInsets.only(top: 60),
-            child: Image.asset('assets/images/2.0x/img_matting_system.png')),
+            child: Image.asset('assets/images/img_matting_system.png')),
       ],
     ));
   }
@@ -146,7 +146,7 @@ class _Onboarding extends State<OnboardingPage> {
         ),
         Container(
             margin: const EdgeInsets.only(top: 92),
-            child: Image.asset('assets/images/2.0x/img_chatting.png')),
+            child: Image.asset('assets/images/img_chatting.png')),
       ],
     ));
   }

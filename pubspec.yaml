@@ -67,10 +67,12 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
-    - assets/images/2.0x/img_frame.png
-    - assets/images/2.0x/img_chatting.png
-    - assets/images/2.0x/img_matting_system.png
-    - assets/images/2.0x/img_arrow_left.png
+    - assets/images/img_frame.png
+    - assets/images/img_chatting.png
+    - assets/images/img_matting_system.png
+    - assets/images/img_arrow_left.png
+    - assets/images/img_license.png
+
 
 
   # To add assets to your application, add an assets section, like this:

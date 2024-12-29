@@ -29,7 +29,7 @@ class _StartPage extends State<StartPage> {
             Container(
               margin: EdgeInsets.symmetric(horizontal: 124),
               child: Image.asset(
-                'assets/images/2.0x/img_frame.png',
+                'assets/images/img_frame.png',
               ),
             ),
             RichText(
