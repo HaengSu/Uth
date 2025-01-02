@@ -68,6 +68,30 @@ class _InputLicensePage extends State<InputLicensePage> {
                                     borderSide:
                                         BorderSide(color: grayColor_EE))),
                           ))),
+                  Column(
+                    children: [
+                      TextButton(onPressed: () {}, child: Text("나중에 등록하기")),
+                      TextButton(onPressed: () {
+                        showDialog(context: context, builder: (context) {
+                          return AlertDialog(
+                            content: Text("라이센스 등록을 실패하였습니다\n재 촬영을 진행해주세요"),
+                            actions: [
+                              Container(
+                                child: TextButton(onPressed: () {
+                                  
+                                }, child: Text("취소")),
+                              ),
+                              Container(
+                                child: TextButton(onPressed: () {
+
+                                }, child: Text("확인")),
+                              )
+                            ],
+                          );
+                        });
+                      }, child: Text("완료하기"))
+                    ],
+                  )
                 ])
               ],
             ),
