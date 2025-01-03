@@ -68,31 +68,38 @@ class _InputLicensePage extends State<InputLicensePage> {
                                     borderSide:
                                         BorderSide(color: grayColor_EE))),
                           ))),
-                  Column(
-                    children: [
-                      TextButton(onPressed: () {}, child: Text("나중에 등록하기")),
-                      TextButton(onPressed: () {
-                        showDialog(context: context, builder: (context) {
-                          return AlertDialog(
-                            content: Text("라이센스 등록을 실패하였습니다\n재 촬영을 진행해주세요"),
-                            actions: [
-                              Container(
-                                child: TextButton(onPressed: () {
-                                  
-                                }, child: Text("취소")),
-                              ),
-                              Container(
-                                child: TextButton(onPressed: () {
+                ]),
+                Row(
+                  children: [
+                    TextButton(onPressed: () {}, child: Text("나중에 등록하기")),
+                    TextButton(onPressed: () {
+                      showDialog(context: context, builder: (context) {
+                        return AlertDialog(
+                          // content: Text("라이센스 등록을 실패하였습니다\n재 촬영을 진행해주세요"),
+                          content: Text("나의 우따 > 프로필 설정에서\n라이센스를 등록/수정할 수 있습니다"),
+                          actions: [
+                            Container(
+                              child: TextButton(onPressed: () {
 
-                                }, child: Text("확인")),
-                              )
-                            ],
-                          );
-                        });
-                      }, child: Text("완료하기"))
-                    ],
-                  )
-                ])
+                              }, child: Text("취소")),
+                            ),
+                            Container(
+                              child: TextButton(onPressed: () {
+                                // TODO: 페이지 이동
+                                widget.pageController.nextPage(
+                                    duration: Duration(milliseconds: 300),
+                                    curve: Curves.easeInOutSine);
+
+                                double updateValue = 1;
+                                widget.onProgressUpdate(updateValue);
+                              }, child: Text("확인")),
+                            )
+                          ],
+                        );
+                      });
+                    }, child: Text("완료하기"))
+                  ],
+                )
               ],
             ),
           ),

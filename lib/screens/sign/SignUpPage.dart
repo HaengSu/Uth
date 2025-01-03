@@ -7,6 +7,7 @@ import 'package:uth/screens/sign/step_1_page.dart';
 import 'package:uth/screens/sign/step_2_page.dart';
 import 'package:uth/screens/sign/step_3_page.dart';
 import 'package:uth/screens/sign/step_4_page.dart';
+import 'package:uth/screens/sign/step_5_page.dart';
 
 class SignUpPage extends StatefulWidget {
   const SignUpPage({super.key});
@@ -75,31 +76,30 @@ class _SignUpPage extends State<SignUpPage> {
                 });
               },
               children: [
-                // TODO: 테스트를 위해서 임시 주석 처리
-                // InputEmailPage(
-                //   pageController: _pageController,
-                //   onProgressUpdate: (newValue) {
-                //     setState(() {
-                //       _progressValue = newValue;
-                //     });
-                //   },
-                // ),
-                // InputPasswordPage(
-                //     pageController: _pageController,
-                //     onProgressUpdate : (newValue) {
-                //       setState(() {
-                //         _progressValue = newValue;
-                //       });
-                //     },
-                // ),
-                // InputUserProfilePage(
-                //   pageController: _pageController,
-                //   onProgressUpdate : (newValue) {
-                //     setState(() {
-                //       _progressValue = newValue;
-                //     });
-                //   },
-                // ),
+                InputEmailPage(
+                  pageController: _pageController,
+                  onProgressUpdate: (newValue) {
+                    setState(() {
+                      _progressValue = newValue;
+                    });
+                  },
+                ),
+                InputPasswordPage(
+                    pageController: _pageController,
+                    onProgressUpdate : (newValue) {
+                      setState(() {
+                        _progressValue = newValue;
+                      });
+                    },
+                ),
+                InputUserProfilePage(
+                  pageController: _pageController,
+                  onProgressUpdate : (newValue) {
+                    setState(() {
+                      _progressValue = newValue;
+                    });
+                  },
+                ),
                 InputLicensePage(
                   pageController: _pageController,
                   onProgressUpdate : (newValue) {
@@ -107,7 +107,16 @@ class _SignUpPage extends State<SignUpPage> {
                       _progressValue = newValue;
                     });
                   },
-                )
+                ),
+                CheckTNCPage(
+                  pageController: _pageController,
+                  onProgressUpdate : (newValue) {
+                    setState(() {
+                      _progressValue = newValue;
+                    });
+                  },
+                ),
+
               ],
             ))
           ],
