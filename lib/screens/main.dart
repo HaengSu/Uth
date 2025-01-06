@@ -28,7 +28,7 @@ GoRouter router() {
     // initialLocation: '/start',
 
     // fixme : ui제작을 위해서 사용 추후삭제할 것
-    initialLocation: '/signup',
+    initialLocation: '/signin',
 
     routes: [
       GoRoute(
