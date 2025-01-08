@@ -1,9 +1,6 @@
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:uth/screens/chat/ChattingPage.dart';
-import 'package:uth/screens/license/UthLicensePage.dart';
-import 'package:uth/screens/matting/MattingPage.dart';
-import 'package:uth/screens/mypage/MyPage.dart';
+import 'package:uth/common/theme/colors.dart';
 
 class MainPage extends StatefulWidget {
   const MainPage({super.key});
@@ -15,11 +12,121 @@ class MainPage extends StatefulWidget {
 }
 
 class _MainPage extends State<MainPage> {
+  final List<String> entries = <String>['A', 'B', 'C', 'D', 'E', 'F', 'G'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text("MainPage"),
+      body: Column(
+        children: [
+          Container(
+            padding: EdgeInsets.only(top: 58, left: 20, right: 15, bottom: 24),
+            color: mainColor,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Image.asset("assets/images/img_main_logo.png"),
+                    Spacer(
+                      flex: 1,
+                    ),
+                    Icon(Icons.notifications_none_rounded),
+                  ],
+                ),
+                Container(
+                  margin: EdgeInsets.only(top: 41, bottom: 29),
+                  child: Align(
+                    alignment: Alignment.centerLeft,
+                    child: Text(
+                      "버디매칭을 이용하여\n함께 할 버디를 찾아보세요 👀",
+                      style: TextStyle(color: Colors.white, fontSize: 22),
+                    ),
+                  ),
+                ),
+                TextButton(
+                  style: TextButton.styleFrom(
+                      padding: EdgeInsets.only(
+                          top: 22, bottom: 22, right: 18, left: 18),
+                      backgroundColor: blueColor_FF,
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(12.0))),
+                  child: Row(
+                    children: [
+                      Expanded(
+                        child: Align(
+                          alignment: Alignment.center, // 텍스트를 가운데에 배치
+                          child: Text(
+                            "버디 매칭 하러가기",
+                            style: TextStyle(color: Colors.white, fontSize: 16),
+                          ),
+                        ),
+                      ),
+                      Icon(
+                        Icons.arrow_forward_ios_rounded,
+                        color: Colors.white,
+                      ),
+                    ],
+                  ),
+                  onPressed: () {},
+                )
+              ],
+            ),
+          ),
+          Expanded(
+              child: Container(
+            color: whiteColor_F9,
+            child: Column(
+              children: [
+                Row(
+                  children: [
+                    Container(
+                      margin: EdgeInsets.only(left: 20, top: 23),
+                      child: Text("최신 매칭",
+                          style: TextStyle(fontSize: 20, color: Colors.black)),
+                    ),
+                    Spacer(),
+                    Container(
+                      margin: EdgeInsets.only(right: 20, top: 34),
+                      child: Text("더보기>",
+                          style: TextStyle(fontSize: 12, color: grayColor_BD)),
+                    ),
+                  ],
+                ),
+                Expanded(
+                    child: Container(
+                  margin:
+                      EdgeInsets.only(left: 20, right: 20, top: 13, bottom: 13),
+                  decoration: BoxDecoration(
+                      boxShadow: [
+                        BoxShadow(
+                          color: blackColor_trans_7,
+                          offset: Offset(0.0, 1.0), //(x,y)
+                          blurRadius: 9.0,
+                        )
+                      ],
+                      color: Colors.white,
+                      borderRadius: BorderRadius.all(Radius.circular(16.0))),
+                  child: ,
+                ))
+              ],
+            ),
+          ))
+        ],
+      ),
     );
   }
+}
+
+Widget matchingWidget() {
+  return ListTile(
+    title: Text('test'),
+    subtitle: Column(children: [
+      Align(
+        alignment: Alignment.centerLeft,
+        child: Text('sub test1'),
+      ),
+      Align(alignment: Alignment.centerLeft, child: Text('sub test2'))
+    ]),
+    leading: Icon(Icons.account_balance),
+  );
 }

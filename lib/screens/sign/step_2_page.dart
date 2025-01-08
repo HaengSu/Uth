@@ -122,7 +122,7 @@ class _InputPasswordPage extends State<InputPasswordPage> {
                           borderSide: BorderSide(
                         color: _isPWMatch.value == true
                             ? mainColor
-                            : errorColor, // 에러 상태에서 포커스가 있는 경우
+                            : redColor_FF, // 에러 상태에서 포커스가 있는 경우
                         width: 2,
                       ))),
                 ),
@@ -268,7 +268,7 @@ class _InputPasswordPage extends State<InputPasswordPage> {
     if (_isPWMatch.value == true) {
       resColor = mainColor;
     } else if (_isPWMatch.value == false) {
-      resColor = errorColor;
+      resColor = redColor_FF;
     }
 
     return resColor;
@@ -280,7 +280,7 @@ class _InputPasswordPage extends State<InputPasswordPage> {
     if (_isPWMatch.value == true) {
       resColor = grayColor_9E;
     } else if (_isPWMatch.value == false) {
-      resColor = errorColor;
+      resColor = redColor_FF;
     }
 
     return resColor;

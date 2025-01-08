@@ -143,20 +143,20 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
                                           errorStyle: TextStyle(
                                               color: isDuplicated == true
                                                   ? mainColor
-                                                  : errorColor,
+                                                  : redColor_FF,
                                               fontSize: 11),
                                           errorMaxLines: 1,
                                           errorBorder:
                                               const UnderlineInputBorder(
                                                   borderSide: BorderSide(
-                                                      color: errorColor,
+                                                      color: redColor_FF,
                                                       width: 2)),
                                           focusedErrorBorder:
                                               UnderlineInputBorder(
                                                   borderSide: BorderSide(
                                             color: isDuplicated == true
                                                 ? mainColor
-                                                : errorColor,
+                                                : redColor_FF,
                                             // 에러 상태에서 포커스가 있는 경우
                                             width: 2,
                                           ))),
@@ -359,7 +359,7 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
     Color resColor = grayColor_9E;
 
     if (isNickNameExist.value == true) {
-      resColor = errorColor;
+      resColor = redColor_FF;
     } else if (isNickNameExist.value == false) {
       resColor = mainColor;
     }
@@ -371,7 +371,7 @@ class _InputUserProfilePage extends State<InputUserProfilePage> {
     Color resColor = mainColor;
 
     if (isNickNameExist.value == true) {
-      resColor = errorColor;
+      resColor = redColor_FF;
     } else if (isNickNameExist.value == false) {
       resColor = grayColor_9E;
     }

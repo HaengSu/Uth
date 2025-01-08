@@ -102,17 +102,17 @@ class _InputEmailPage extends State<InputEmailPage> {
                               errorStyle: TextStyle(
                                   color: isDuplicated == true
                                       ? mainColor
-                                      : errorColor,
+                                      : redColor_FF,
                                   fontSize: 11),
                               errorMaxLines: 1,
                               errorBorder: const UnderlineInputBorder(
                                   borderSide:
-                                      BorderSide(color: errorColor, width: 2)),
+                                      BorderSide(color: redColor_FF, width: 2)),
                               focusedErrorBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
                                 color: isDuplicated == true
                                     ? mainColor
-                                    : errorColor, // 에러 상태에서 포커스가 있는 경우
+                                    : redColor_FF, // 에러 상태에서 포커스가 있는 경우
                                 width: 2,
                               ))),
                         ),
