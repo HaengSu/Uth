@@ -33,6 +33,7 @@ class _MainPage extends State<MainPage> {
                     Icon(Icons.notifications_none_rounded),
                   ],
                 ),
+                // TODO: 스크롤뷰 만들어서 하나에 넣어야 함
                 Container(
                   margin: EdgeInsets.only(top: 41, bottom: 29),
                   child: Align(
