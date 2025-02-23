@@ -94,20 +94,10 @@ class _MainPage extends State<MainPage> {
                 ),
                 Expanded(
                     child: Container(
-                  margin:
-                      EdgeInsets.only(left: 20, right: 20, top: 13, bottom: 13),
-                  decoration: BoxDecoration(
-                      boxShadow: [
-                        BoxShadow(
-                          color: blackColor_trans_7,
-                          offset: Offset(0.0, 1.0), //(x,y)
-                          blurRadius: 9.0,
-                        )
-                      ],
-                      color: Colors.white,
-                      borderRadius: BorderRadius.all(Radius.circular(16.0))),
-                  child: ,
-                ))
+                      margin:
+                      EdgeInsets.only(left: 26, right: 20, top: 13, bottom: 13),
+                      child: listWidget(),
+                    ))
               ],
             ),
           ))
@@ -117,16 +107,34 @@ class _MainPage extends State<MainPage> {
   }
 }
 
+Widget listWidget() {
+  return ListView.separated(
+      itemBuilder: (BuildContext context, int index) {
+        return matchingWidget();
+      },
+      separatorBuilder: (BuildContext context, int index) => const Divider(),
+      itemCount: 10);
+}
+
 Widget matchingWidget() {
   return ListTile(
-    title: Text('test'),
+    contentPadding: const EdgeInsets.only(left: 0.0),
+    title: Text('모집중'),
     subtitle: Column(children: [
       Align(
         alignment: Alignment.centerLeft,
-        child: Text('sub test1'),
+        child: Text('다이빙 하러가요~~~', style: TextStyle(fontSize: 15),),
       ),
-      Align(alignment: Alignment.centerLeft, child: Text('sub test2'))
+      Align(alignment: Alignment.centerLeft, child: Text('다이빙장 1')),
+      Align(alignment: Alignment.centerLeft, child: Text('05.19(토) 오전 10:00'))
     ]),
-    leading: Icon(Icons.account_balance),
+    // leading: Image.asset('assets/images/img_dummy.png', width: 68, height: 68, fit: BoxFit.contain),
+    // fixme : leading 사이즈 수정중...
+    leading: SizedBox(
+      width: 68,
+      height: 68,
+      child: Image.asset('assets/images/img_dummy.png', fit: BoxFit.contain),
+    ),
   );
 }
+
